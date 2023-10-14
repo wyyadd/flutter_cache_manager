@@ -118,6 +118,10 @@ class HttpGetResponse implements FileServiceResponse {
     if (contentTypeHeader != null) {
       final contentType = ContentType.parse(contentTypeHeader);
       fileExtension = contentType.fileExtension;
+      // fix for exe
+      if (fileExtension == '.x-ms-dos-executable') {
+        fileExtension = '.exe';
+      }
     }
     return fileExtension;
   }
